@@ -35,6 +35,10 @@ class deleteCellHelper: NSObject {
         }
         return sharedInstance
     }
+    
+    deinit {
+        self.currentTableView?.removeObserver(self, forKeyPath: "contentOffset")
+    }
 
 }
 
@@ -186,8 +190,7 @@ extension deleteCellHelper{
             
         }
     }
-    
-    
+  
 }
 
 

@@ -140,3 +140,12 @@ extension SGFavoritesCell{
 }
 
 
+extension SGFavoritesCell{
+    
+    
+    
+    
+    
+}
+
+
