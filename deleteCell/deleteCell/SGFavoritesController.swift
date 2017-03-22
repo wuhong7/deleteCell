@@ -80,21 +80,37 @@ extension SGFavoritesController:UITableViewDelegate,UITableViewDataSource,delete
     
     func deleteTableView() -> (buttonArray: [EditButton]?, currentTableView: UITableView?) {
         
-        let btn1 : EditButton = EditButton(size: CGSize(width: 50, height: 50), rightMargin: 50) { (indexPath, editCell) in
+        let btn1 : EditButton = EditButton(size: CGSize(width: 70, height: 70), rightMargin: 30) { (indexPath, editCell) in
             self.alert(indexPath: indexPath)
         }
-        btn1.backgroundColor = UIColor.red
-        btn1.setTitle("删除", for: .normal)
         
-        let btn2 : EditButton = EditButton(size:CGSize(width: 50, height: 50), rightMargin: 50){ (indexPath, editCell) in
+        let str = NSAttributedString.imageTextWith(image: UIImage(named: "home_card")!, imageWH: 35, title: "删除", fontSize: 14, titleColor: UIColor.white, spacing: 7)
+        btn1.setAttributedTitle(str, for: .normal)
+        //设置换行
+        btn1.titleLabel?.numberOfLines = 0;
+        //文字居中
+        btn1.titleLabel?.textAlignment = .center;
+        btn1.backgroundColor = UIColor.red
+        
+        
+        
+        
+        let btn2 : EditButton = EditButton(size:CGSize(width: 70, height: 70), rightMargin: 30){ (indexPath, editCell) in
             self.alert(indexPath: indexPath)
         }
-
+        let str1 = NSAttributedString.imageTextWith(image: UIImage(named: "home_xiu")!, imageWH: 35, title: "分享", fontSize: 14, titleColor: UIColor.white, spacing: 7)
+        btn2.setAttributedTitle(str1, for: .normal)
+        btn2.titleLabel?.numberOfLines = 0;
+        btn2.titleLabel?.textAlignment = .center;
         btn2.backgroundColor = UIColor.green
-        btn2.setTitle("分享", for: .normal)
+       
         
         return ([btn1,btn2],tableView)
     }
+    
+    
+    
+    
     
     fileprivate func alert(indexPath:IndexPath){
         

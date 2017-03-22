@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		28B4D8261E82C1DB00649AAB /* NSAttributedString+Addtion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B4D8251E82C1DB00649AAB /* NSAttributedString+Addtion.swift */; };
 		E6CD31E51E82575000896007 /* EditButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6CD31E41E82575000896007 /* EditButton.swift */; };
 		E6FE17B51E7BC68C006705EE /* deleteCellHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FE17B41E7BC68C006705EE /* deleteCellHelper.swift */; };
 		E6FFF44B1E78DD6600CFE4A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6FFF44A1E78DD6600CFE4A2 /* AppDelegate.swift */; };
@@ -31,6 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		28B4D8251E82C1DB00649AAB /* NSAttributedString+Addtion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Addtion.swift"; sourceTree = "<group>"; };
 		E6CD31E41E82575000896007 /* EditButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditButton.swift; sourceTree = "<group>"; };
 		E6FE17B41E7BC68C006705EE /* deleteCellHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = deleteCellHelper.swift; sourceTree = "<group>"; };
 		E6FFF4471E78DD6600CFE4A2 /* deleteCell.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = deleteCell.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,6 +70,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		28B4D8211E82BCB800649AAB /* 图像和文本上下排列 */ = {
+			isa = PBXGroup;
+			children = (
+				28B4D8251E82C1DB00649AAB /* NSAttributedString+Addtion.swift */,
+			);
+			path = "图像和文本上下排列";
+			sourceTree = "<group>";
+		};
 		E6FFF43E1E78DD6600CFE4A2 = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +97,7 @@
 		E6FFF4491E78DD6600CFE4A2 /* deleteCell */ = {
 			isa = PBXGroup;
 			children = (
+				28B4D8211E82BCB800649AAB /* 图像和文本上下排列 */,
 				E6FFF45E1E78DEC700CFE4A2 /* SnapKit */,
 				E6FFF44A1E78DD6600CFE4A2 /* AppDelegate.swift */,
 				E6FFF47A1E78E03000CFE4A2 /* SGFavoritesController.swift */,
@@ -212,6 +223,7 @@
 				E6FFF47D1E78E1A900CFE4A2 /* SGFunc.swift in Sources */,
 				E6FFF46E1E78DEC700CFE4A2 /* ConstraintDescription.swift in Sources */,
 				E6FFF4791E78DF8F00CFE4A2 /* SGFavoritesCell.swift in Sources */,
+				28B4D8261E82C1DB00649AAB /* NSAttributedString+Addtion.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
