@@ -17,6 +17,8 @@ class SGFavoritesController: UIViewController {
         super.viewDidLoad()
         self.setupUI()
     }
+   
+
 
 }
 
@@ -97,11 +99,16 @@ extension SGFavoritesController:UITableViewDelegate,UITableViewDataSource,delete
     
     
     func deleteTableView() -> (buttonArray: [EditButton]?, currentTableView: UITableView?) {
-        let btn1 = EditButton(size:CGSize(width: 50, height: 50), rightMargin: 50)
-        let btn2 = EditButton(size:CGSize(width: 50, height: 50), rightMargin: 50)
+        let btn1 : EditButton = EditButton(size:CGSize(width: 50, height: 50), rightMargin: 50)
+        btn1.backgroundColor = UIColor.red
+        btn1.setTitle("删除", for: .normal)
+        
+        let btn2 : EditButton = EditButton(size:CGSize(width: 50, height: 50), rightMargin: 50)
+        btn2.backgroundColor = UIColor.green
+        btn2.setTitle("分享", for: .normal)
+        
         return ([btn1,btn2],tableView)
     }
-   
     
 }
 

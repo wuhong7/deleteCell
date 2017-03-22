@@ -35,6 +35,7 @@ class deleteCellHelper: NSObject {
         
         if let buttonArray = result?.buttonArray {
             //布局cell，底层
+            cell.setBottomView(btnArray: buttonArray)
         }
         if let currentTableView = result?.currentTableView,sharedInstance.currentTableView == nil {
             sharedInstance.currentTableView = currentTableView

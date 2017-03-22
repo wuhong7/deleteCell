@@ -39,15 +39,8 @@ extension SGFavoritesCell{
         //取消选中效果
         selectionStyle = .none
         contentView.backgroundColor = UIColor.blue
-        // 1.edit视图
-        if let bottomView = getBottomView(){
-            contentView.addSubview(bottomView)
-            //布局
-            bottomView.snp_makeConstraints{ (make) -> Void in
-                make.edges.equalTo(0)
-            }
-        }
-        // 2.show视图
+        
+        // 1.show视图
         showView = getShowView()
         contentView.addSubview(showView!)
         
@@ -59,34 +52,46 @@ extension SGFavoritesCell{
        
     }
     
+    // 2.edit视图
+    func setBottomView( btnArray : [EditButton]){
+        
+        if let bottomView = getBottomView(btnArray: btnArray){
+            contentView.addSubview(bottomView)
+            //布局
+            bottomView.snp_makeConstraints{ (make) -> Void in
+                make.edges.equalTo(0)
+            }
+        }
+        
+    }
     
-    private func getBottomView() -> UIView?{
-        
-        
+    private func getBottomView(btnArray : [EditButton]) -> UIView?{
         
         let bottomView = UIView()
-        let deleteBtn  = UIButton()
-        let shareBtn   = UIButton()
-        deleteBtn.setTitle("删除", for: .normal)
-        deleteBtn.backgroundColor = UIColor.red
-        shareBtn.setTitle("分享", for: .normal)
-        shareBtn.backgroundColor = UIColor.green
         
-        bottomView.addSubview(deleteBtn)
-        bottomView.addSubview(shareBtn)
+        var rightDistance:Double = 0.0
         
-        deleteBtn.snp_makeConstraints{ (make) -> Void in
-            make.centerY.equalTo(bottomView)
-            make.right.equalTo(bottomView.snp_right).offset(-50)
-            make.width.height.equalTo(50)
+        
+        for (index, btn) in btnArray.enumerated()
+        {
+    
+            if index>0 {
+                rightDistance = rightDistance + btn.rightMargin! + Double((btnArray[index - 1].buttonSize?.width)!)
+            }else{
+                 rightDistance = rightDistance + btn.rightMargin!
+            }
+           
+            
+            bottomView.addSubview(btn)
+            
+            btn.snp_makeConstraints{ (make) -> Void in
+                make.centerY.equalTo(bottomView)
+                make.right.equalTo(bottomView.snp_right).offset(-rightDistance)
+                make.size.equalTo(btn.buttonSize!)
+            }
+            
+            
         }
-        
-        shareBtn.snp_makeConstraints{ (make) -> Void in
-            make.centerY.equalTo(bottomView)
-            make.right.equalTo(deleteBtn.snp_left).offset(-50)
-            make.width.height.equalTo(50)
-        }
-
 
         return bottomView
     }
