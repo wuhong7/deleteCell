@@ -30,9 +30,8 @@ class deleteCellHelper: NSObject {
         
         sharedInstance.addGesture(toCell: cell)
         sharedInstance.cellArray.closeArray.append(cell)
-        
+        //从代理拿到 底层btn / tableView
         let result = sharedInstance.delegate?.deleteTableView()
-        
         if let buttonArray = result?.buttonArray {
             //布局cell，底层
             cell.setBottomView(btnArray: buttonArray)
@@ -254,6 +253,5 @@ extension deleteCellHelper{
 protocol deleteCellDelegate : NSObjectProtocol {
     
     func deleteTableView() -> (buttonArray : [EditButton]?,currentTableView : UITableView?)
-    
     
 }

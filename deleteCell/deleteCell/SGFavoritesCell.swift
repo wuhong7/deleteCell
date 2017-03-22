@@ -74,7 +74,7 @@ extension SGFavoritesCell{
         
         for (index, btn) in btnArray.enumerated()
         {
-    
+            btn.addTarget(self, action: #selector(btnClick(btn:)), for: .touchUpInside)
             if index>0 {
                 rightDistance = rightDistance + btn.rightMargin! + Double((btnArray[index - 1].buttonSize?.width)!)
             }else{
@@ -139,7 +139,12 @@ extension SGFavoritesCell{
 }
 
 
-
+extension SGFavoritesCell{
+    func btnClick(btn:EditButton){
+        
+        
+    }
+}
 
 
 
