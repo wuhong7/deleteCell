@@ -11,6 +11,7 @@ import UIKit
 class SGFavoritesController: UIViewController {
 
     let tableView = UITableView()
+    let cellHelper = deleteCellHelper.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,8 +35,9 @@ extension SGFavoritesController{
         //添加tableView
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.cellHelper.delegate = self
         //tableView设置
-//        tableView.register(SGFavoritesCell.self , forCellReuseIdentifier: "cell")
+        tableView.register(SGFavoritesCell.self , forCellReuseIdentifier: "cell")
         tableView.rowHeight = 200
         view.addSubview(self.tableView)
         
@@ -54,13 +56,12 @@ extension SGFavoritesController{
 // MARK: - 数据层
 extension SGFavoritesController{
     
-
     
 }
 
 
 // MARK: - delegate
-extension SGFavoritesController:UITableViewDelegate,UITableViewDataSource{
+extension SGFavoritesController:UITableViewDelegate,UITableViewDataSource,deleteCellDelegate{
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 10
@@ -69,26 +70,22 @@ extension SGFavoritesController:UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCell(withIdentifier: "cell")as? SGFavoritesCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
-        if cell == nil {
-            cell = SGFavoritesCell(style: .default, reuseIdentifier: "cell", tableView: tableView)
-        }
-        
-        return cell!
+        return cell
     }
-    
+//    
 //    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
 //        let shareAction = UITableViewRowAction(style: .normal, title: "share") { (UITableViewRowAction, IndexPath) in
-//        
-//            
+//       
+//           
 //            
 //        }
 //        
-//        let deleteAction = UITableViewRowAction(style: .default, title: "delete") { (UITableViewRowAction, IndexPath) in
-//            
-//            
-//            
+//       
+//       let deleteAction = UITableViewRowAction(style: .default, title: "delete") { (UITableViewRowAction, IndexPath) in
+//        
+//        
 //        }
 //        
 //        shareAction.backgroundColor = UIColor.blue
@@ -97,6 +94,14 @@ extension SGFavoritesController:UITableViewDelegate,UITableViewDataSource{
 //        return[shareAction,deleteAction]
 //        
 //    }
+    
+    
+    func deleteTableView() -> (buttonArray: [EditButton]?, currentTableView: UITableView?) {
+        let btn1 = EditButton(size:CGSize(width: 50, height: 50), rightMargin: 50)
+        let btn2 = EditButton(size:CGSize(width: 50, height: 50), rightMargin: 50)
+        return ([btn1,btn2],tableView)
+    }
+   
     
 }
 

@@ -16,25 +16,36 @@ struct CellArray {
 
 class deleteCellHelper: NSObject {
     
+    weak var delegate : deleteCellDelegate?
+    
     let kMiddle : CGFloat = 250
     var currentTableView : UITableView?
     fileprivate lazy var cellArray = CellArray(openArray: [SGFavoritesCell](),closeArray: [SGFavoritesCell]())
     var currentCell : SGFavoritesCell?
     
     
-    private static let sharedInstance = deleteCellHelper()
+    static let sharedInstance = deleteCellHelper()
     
-    class func sharedHelper(cell:SGFavoritesCell,currentTableView:UITableView)-> deleteCellHelper {
+    class func sharedHelper(cell:SGFavoritesCell)-> deleteCellHelper {
         
         sharedInstance.addGesture(toCell: cell)
         sharedInstance.cellArray.closeArray.append(cell)
         
-        if sharedInstance.currentTableView == nil {
+        let result = sharedInstance.delegate?.deleteTableView()
+        
+        if let buttonArray = result?.buttonArray {
+            //布局cell，底层
+        }
+        if let currentTableView = result?.currentTableView,sharedInstance.currentTableView == nil {
             sharedInstance.currentTableView = currentTableView
             sharedInstance.addObserverEvent()
         }
+        
         return sharedInstance
     }
+    
+    
+    
     
     deinit {
         self.currentTableView?.removeObserver(self, forKeyPath: "contentOffset")
@@ -237,3 +248,11 @@ extension deleteCellHelper{
     
 }
 
+
+// 1.定义协议
+protocol deleteCellDelegate : NSObjectProtocol {
+    
+    func deleteTableView() -> (buttonArray : [EditButton]?,currentTableView : UITableView?)
+    
+    
+}

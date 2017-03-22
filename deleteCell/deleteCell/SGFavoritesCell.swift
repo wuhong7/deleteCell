@@ -8,12 +8,6 @@
 
 import UIKit
 
-enum notifyStyle {
-    case closeCell
-    case otherCellIsOpen
-    case otherCellIsClose
-}
-
 class SGFavoritesCell: UITableViewCell {
 
     let kMiddle : CGFloat = 250
@@ -24,14 +18,11 @@ class SGFavoritesCell: UITableViewCell {
     var showView   : UIView?
     
     var cellHelper: deleteCellHelper?
-    
-    init(style: UITableViewCellStyle, reuseIdentifier: String?,tableView:UITableView) {
+
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        cellHelper = deleteCellHelper.sharedHelper(cell: self, currentTableView: tableView)
-        
+        cellHelper = deleteCellHelper.sharedHelper(cell: self)
         setupUI()
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -48,17 +39,18 @@ extension SGFavoritesCell{
         //取消选中效果
         selectionStyle = .none
         contentView.backgroundColor = UIColor.blue
-        // 1. 添加控件
-        let bottomView = getBottomView()
-        contentView.addSubview(bottomView)
-        
+        // 1.edit视图
+        if let bottomView = getBottomView(){
+            contentView.addSubview(bottomView)
+            //布局
+            bottomView.snp_makeConstraints{ (make) -> Void in
+                make.edges.equalTo(0)
+            }
+        }
+        // 2.show视图
         showView = getShowView()
         contentView.addSubview(showView!)
         
-        // 2. 添加约束
-        bottomView.snp_makeConstraints{ (make) -> Void in
-            make.edges.equalTo(0)
-        }
         showView!.snp_makeConstraints{ (make) -> Void in
             make.edges.equalTo(0)
         }
@@ -68,7 +60,9 @@ extension SGFavoritesCell{
     }
     
     
-    private func getBottomView() -> UIView{
+    private func getBottomView() -> UIView?{
+        
+        
         
         let bottomView = UIView()
         let deleteBtn  = UIButton()
@@ -140,12 +134,18 @@ extension SGFavoritesCell{
 }
 
 
-extension SGFavoritesCell{
-    
-    
-    
-    
-    
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
