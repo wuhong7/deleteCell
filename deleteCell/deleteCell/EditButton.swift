@@ -14,7 +14,7 @@ class EditButton: UIButton {
     ///button的尺寸
     var buttonSize : CGSize?
     ///回调闭包
-    typealias callBack = (IndexPath?, UITableViewCell?) -> ()
+    typealias callBack = (IndexPath, UITableViewCell) -> ()
     var deleteCallBack : callBack?
     
     init(size: CGSize,rightMargin:Double,deleteCallBack:@escaping callBack) {

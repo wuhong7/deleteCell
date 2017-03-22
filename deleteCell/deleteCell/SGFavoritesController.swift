@@ -76,38 +76,18 @@ extension SGFavoritesController:UITableViewDelegate,UITableViewDataSource,delete
         
         return cell
     }
-//    
-//    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-//        let shareAction = UITableViewRowAction(style: .normal, title: "share") { (UITableViewRowAction, IndexPath) in
-//       
-//           
-//            
-//        }
-//        
-//       
-//       let deleteAction = UITableViewRowAction(style: .default, title: "delete") { (UITableViewRowAction, IndexPath) in
-//        
-//        
-//        }
-//        
-//        shareAction.backgroundColor = UIColor.blue
-//        deleteAction.backgroundColor = UIColor.red
-//        
-//        return[shareAction,deleteAction]
-//        
-//    }
     
     
     func deleteTableView() -> (buttonArray: [EditButton]?, currentTableView: UITableView?) {
         
         let btn1 : EditButton = EditButton(size: CGSize(width: 50, height: 50), rightMargin: 50) { (indexPath, editCell) in
-            print("\(indexPath)--\(editCell)")
+            self.alert(indexPath: indexPath)
         }
         btn1.backgroundColor = UIColor.red
         btn1.setTitle("删除", for: .normal)
         
         let btn2 : EditButton = EditButton(size:CGSize(width: 50, height: 50), rightMargin: 50){ (indexPath, editCell) in
-            print("\(indexPath)--\(editCell)")
+            self.alert(indexPath: indexPath)
         }
 
         btn2.backgroundColor = UIColor.green
@@ -116,7 +96,21 @@ extension SGFavoritesController:UITableViewDelegate,UITableViewDataSource,delete
         return ([btn1,btn2],tableView)
     }
     
+    fileprivate func alert(indexPath:IndexPath){
+        
+        let alert = UIAlertController(title: "提示", message: "\(indexPath)", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "确定", style: .default) { (_) in
+            printLog(message: "嘿嘿")
+        })
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
 }
+
+
+
+
 
 
 

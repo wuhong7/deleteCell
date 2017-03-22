@@ -142,6 +142,8 @@ extension SGFavoritesCell{
 extension SGFavoritesCell{
     func btnClick(btn:EditButton){
         
+        let indexPath = cellHelper?.currentTableView?.indexPath(for: self)
+        btn.deleteCallBack!(indexPath!,self)
         
     }
 }
